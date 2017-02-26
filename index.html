@@ -5,71 +5,19 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<link rel="shortcut icon" type="image/png" href="favicon.png">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
 	</head>
 	<body>
-		<h1>The Psychic Game!</h1>
-		<p>Guess what letter I'm thinking of</p>
-		<p>Wins: <span id="winNumber">0</span></p>
-		<p>Losses: <span id="lossNumber">0</span></p>
-		<p>Guesses Left: <span id="guessNumber">10</span></p>
-		<p>Your guesses so far: <span id="guessValues"></span></p>
+		<div class="jumbotron" align="center">
+			<h1>The Psychic Game!</h1>
+			<p>Guess what letter I'm thinking of</p>
+			<p>Wins: <span id="winNumber">0</span></p>
+			<p>Losses: <span id="lossNumber">0</span></p>
+			<p>Guesses Left: <span id="guessNumber">10</span></p>
+			<p>Your guesses so far: <span id="guessValues"></span></p>
+		</div>
 	</body>
 
-	<script type="text/javascript">
+	<script src="assets/js/game.js"></script>
 
-		// Define Variables
-		var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-		var displayWinNumber = document.getElementById('winNumber');
-		var displayLossNumber = document.getElementById('lossNumber');
-		var displayGuessNumber = document.getElementById('guessNumber');
-		var displayGuessValues = document.getElementById('guessValues');
-		var computerLetter = "";
-		var wins = 0;
-		var losses = 0;
-		var guessesLeft = 0;
-		var guesses = [];
-
-
-		// console.log(computerLetter);
-
-		// Initializes a new game
-		var resetGame = function() {
-			guessesLeft = 10;
-			displayGuessNumber.textContent = guessesLeft;
-        	guesses = [];
-        	computerLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-        	// console.log(computerLetter);
-        	displayGuessValues.textContent = "";
-		};
-
-		//Initialize first game
-		resetGame();
-
-		// Listen for the user to press a key
-		document.onkeyup = function(event) {
-
-        // Determines which key was pressed
-        var userGuess = event.key;
-
-        if (userGuess === computerLetter) {					
-        	// If the guess is correct 
-        	wins++;
-        	displayWinNumber.textContent = wins;
-        	resetGame();
-        } else if (guesses.indexOf(userGuess + " ") === -1 && alphabet.indexOf(userGuess) !== -1) {  
-        	// If the guess isn't a match and hasn't been guessed already check to see if it was valid	
-        	guessesLeft --;
-        	displayGuessNumber.textContent = guessesLeft;
-        	guesses += userGuess + " ";
-        	displayGuessValues.textContent = guesses;
-        	if (guessesLeft === 0) { 						
-        		// If all the guesses are used up reset the game
-        		losses ++;
-        		displayLossNumber.textContent = losses;
-        		resetGame();
-        	}
-        } 
-};
-	
-	</script>
 </html>
